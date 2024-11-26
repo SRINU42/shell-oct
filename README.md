@@ -1,6 +1,6 @@
 # shell-oct
 
-echo -e "\e[31    \e[0"
+# echo -e "\e[31    \e[0"
 
-"/tmp/roboshop.log"
-new test
+# &>>"/tmp/roboshop.log"
+# new test
