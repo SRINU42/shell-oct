@@ -37,4 +37,4 @@ echo -e "\e[31 Install MongoDb \e[0"
 dnf install mongodb-org-shell -y &>>"/tmp/roboshop.log"
 
 echo -e "\e[31 Load Master Data \e[0"
-mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
+mongo --host 172.31.17.163 </app/schema/catalogue.js
