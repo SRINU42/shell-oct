@@ -1,11 +1,20 @@
 
-echo -e "\e[34m Config mongodb repo   \e[0m"
-cp /home/centos/shell-oct/mongo.repo /etc/yum.repos.d/mongo.repo &>>"/tmp/roboshop.log"
+source common.sh
 
-echo -e "\e[34m  Install MongoDb  \e[0m"
-dnf install mongodb-org -y &>>"/tmp/roboshop.log"
+echo -e "${color} mongodb repo file  ${nocolor}"
+cp /home/centos/roboshop-shell2/mongodb.repo /etc/yum.repos.d/mongodb.repo 
+stat_check $?
 
-echo -e "\e[34m  Enable mangodb  \e[0m"
-systemctl enable mongod &>>"/tmp/roboshop.log"
-systemctl restart mongod &>>"/tmp/roboshop.log"
+echo -e "${color} install mongodb ${nocolor}"
+yum install mongodb-org -y &>>${log_file}
+stat_check $?
+
+echo -e "${color} Update MongoDB Listen Address ${nocolor}"
+sed -i 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf &>>${log_file}
+stat_check $?
+
+echo -e "${color} SystemD start  ${nocolor}"
+systemctl enable mongod &>>${log_file}
+systemctl restart mongod &>>${log_file}
+stat_check $?
 
