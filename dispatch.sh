@@ -24,7 +24,7 @@ go get &>>${log_file}
 go build &>>${log_file}
 
 echo -e "${color} Start System service ${nocolor}"
-cp /home/centos/roboshop-shell2/ ${component}.service /etc/systemd/system/${component}.service &>>${log_file}
+cp /home/centos/shell-oct/ ${component}.service /etc/systemd/system/${component}.service &>>${log_file}
 
 echo -e "${color} Start SystemD  ${nocolor}"
 systemctl daemon-reload &>>${log_file}

@@ -38,7 +38,7 @@ app_presetup() {
 systemd_setup() {
 
     echo -e "${color} Creating the ${component} Services ${nocolor}"
-    cp /home/centos/roboshop-shell2/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
+    cp /home/centos/shell-oct/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
     sed -i -e 's/roboshop_app_password/$roboshop_app_password/' /etc/systemd/system/${component}.service 
     stat_check $?
 
@@ -76,7 +76,7 @@ nodejs() {
 mongo_schema_setup() {
 
     echo -e "${color} mongodb repo file  ${nocolor}"
-    cp /home/centos/roboshop-shell2/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
+    cp /home/centos/shell-oct/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
     stat_check $? 
 
     echo -e "${color} install mongodb ${nocolor}"
@@ -84,7 +84,7 @@ mongo_schema_setup() {
     stat_check $? 
 
     echo -e "${color}  Loading the catalouge ${nocolor}"
-    mongo --host mongodb-dev.devopssessions.store <${app_path}/schema/${component}.js &>>${log_file}
+    mongo --host mongodb-dev.erobo.online <${app_path}/schema/${component}.js &>>${log_file}
     stat_check $? 
 }
 
@@ -97,7 +97,7 @@ mysql_schema_setup() {
     stat_check $? 
 
     echo -e "${color} Load Schema  ${nocolor}"
-    mysql -h mysql-dev.devopssessions.store -uroot -p${mysql_root_password} < ${app_path}/schema/${component}.sql &>>${log_file}
+    mysql -h mysql-dev.erobo.online -uroot -p${mysql_root_password} < ${app_path}/schema/${component}.sql &>>${log_file}
     stat_check $? 
 
 }

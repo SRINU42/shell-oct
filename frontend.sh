@@ -18,7 +18,7 @@ cd /usr/share/nginx/html &>>${log_file}
 unzip /tmp/${component}.zip &>>${log_file}
 
 echo -e "${color} Config the Roboshop file ${nocolor}"
-cp /home/centos/roboshop-shell2/roboshop.conf /etc/nginx/default.d/roboshop.conf 
+cp /home/centos/shell-oct/roboshop.conf /etc/nginx/default.d/roboshop.conf 
 
 echo -e "${color} systemd start ${nocolor}"
 systemctl enable nginx &>>${log_file}
