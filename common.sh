@@ -59,7 +59,6 @@ systemd_setup() {
 
 
 
-
 nodejs() {
     echo -e "${color}  dowload NodeJS file  ${nocolor}"
     curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_file}
@@ -115,6 +114,7 @@ maven() {
 
     echo -e "${color} Install  maven  ${nocolor}"
     yum install maven -y &>>${log_file}
+    stat_check $?
 
     app_presetup
 
@@ -122,6 +122,7 @@ maven() {
     echo -e "${color} dowload Maven Dependencies  ${nocolor}" 
     mvn clean package &>>${log_file}
     mv target/${component}-1.0.jar ${component}.jar &>>${log_file}
+    stat_check $?
 
     mysql_schema_setup
 
