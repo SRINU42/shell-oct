@@ -2,12 +2,19 @@ color="\e[33m"
 nocolor="\e[0m"
 log_file="/tmp/roboshop.log"
 app_path="/app"
+user-id=$(id -u)
+if [ $user-id -ne 0 ]; then
+    echo Scrip Should be Running with SUDO
+    exit 1
+
+fi
 
 stat_check() {
    if [ $1 -eq 0 ]; then
       echo SUCCESS
     else 
       echo FAILURE
+      exit 1
     fi 
     
 }
